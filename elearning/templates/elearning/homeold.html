@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+
+<div class="home-container">
+<div>
+    {% include 'elearning/sidebartopics.html' %}
+
+</div>
+    <div>
+        <h5>{{total_room}} available rooms for you</h5>|<a href="{% url 'create-room' %}">
+        create room</a>
+
+
+    </div>
+
+    </div>
+</div>
+
+
+{% endblock body %}

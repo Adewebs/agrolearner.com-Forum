@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% block body %}
+<style>
+    .room-container{
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+    }
+</style>
+<div class="room-container">
+<div>
+      <h3>{{room.name}}</h3>
+<h3>{{room.hostname.username}}</h3>
+<h3>{{room.description}}</h3>
+<div class="comment-wrapper">
+<h3>Conversation</h3>
+    <hr/>
+
+    <div>
+        <small>@{{items.user}} Posted {{items.created|timesince}} ago</small>
+        <p></p>
+
+        <a href="{% url 'converdelete' items.pk %}">delete</a>
+
+        <hr/>
+
+    </div>
+
+    {% endfor %}
+</div>
+
+    {% if request.user.is_authenticated %}
+    <div class="comment-form">
+<form method="POST" action="">
+    {% csrf_token%}
+    <input type="text" name="body" placeholder="write your message here...">
+    <input type="submit" value="Message">
+
+</form>
+    </div>
+{% endif %}
+</div>
+    <div>
+            <h3>Participant</h3>
+            <hr/>
+
+            {% for part in participants %}
+             <div>
+                <p>@<a href="">{{part.username}}</a></p>
+                 </div>
+
+
+        </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+
+{% block body %}
+
+<main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      {% include 'elearning/sidebartopics.html' %}
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="{{userprofile.avatar.url}}" />
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{{userprofile.name}}</h3>
+            <p>@{{userprofile.username}}</p>
+            {% if request.user == userprofile %}
+            <a href="{% url 'edituser' %}" class="btn btn--main btn--pill">Edit Profile</a> {% endif %}
+          </div>
+
+          <div class="profile__about">
+            <h3>About</h3>
+            <p>
+              {{userprofile.Bio}}
+            </p>
+          </div>
+        </div>
+
+        <div class="roomList__header">
+          <div>
+            <h2>Chat Rooms Hosted by {{userprofile}}</a>
+            </h2>
+          </div>
+        </div>
+       {% include 'elearning/centerwidget.html' %}
+      </div>
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+      {% include 'elearning/activity.html' %}
+      <!-- Activities End -->
+    </div>
+  </main>
+
+{% endblock %}
